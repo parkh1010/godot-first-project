@@ -2,7 +2,7 @@ extends Node2D
 
 const COLUMNS = 8
 const ROWS = 8
-const CELL_SIZE = 64
+const CELL_SIZE = 130
 const COLORS = [
 	Color(1, 0, 0),
 	Color(0, 0, 1),
@@ -16,6 +16,12 @@ var block_nodes = []
 const BlockScene = preload("res://scenes/Block.tscn")
 
 func _ready() -> void:
+	var grid_width = COLUMNS * CELL_SIZE
+	var grid_height = ROWS * CELL_SIZE
+	var center_x = (1080 - grid_width) / 2
+	var center_y = (1920 - grid_height) / 2
+	position = Vector2(center_x, center_y)
+
 	_fill_grid_data()
 	_spawn_blocks()
 
