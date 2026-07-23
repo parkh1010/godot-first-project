@@ -2,13 +2,13 @@ extends Area2D
 
 signal block_clicked(block)
 
-@export var block_color: Color
+@export var animal_texture: Texture2D
 
 var row: int
 var column: int
 
 func _ready() -> void:
-	$ColorRect.color = block_color
+	$AnimalIcon.texture = animal_texture
 	input_pickable = true
 
 func play_pop_animation() -> void:

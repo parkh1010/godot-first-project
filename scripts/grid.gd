@@ -3,11 +3,12 @@ extends Node2D
 const COLUMNS = 8
 const ROWS = 8
 const CELL_SIZE = 130
-const COLORS = [
-	Color(1, 0, 0),
-	Color(0, 0, 1),
-	Color(0, 1, 0),
-	Color(1, 1, 0),
+const ANIMAL_TEXTURES = [
+	preload("res://assets/animals/panda.png"),
+	preload("res://assets/animals/parrot.png"),
+	preload("res://assets/animals/pig.png"),
+	preload("res://assets/animals/snake.png"),
+	preload("res://assets/animals/giraffe.png"),
 ]
 
 var grid_data = []
@@ -45,7 +46,7 @@ func _fill_grid_data() -> void:
 	for row in range(ROWS):
 		var row_data = []
 		for column in range(COLUMNS):
-			row_data.append(randi() % COLORS.size())
+			row_data.append(randi() % ANIMAL_TEXTURES.size())
 		grid_data.append(row_data)
 
 func _spawn_blocks() -> void:
@@ -55,7 +56,7 @@ func _spawn_blocks() -> void:
 		for column in range(COLUMNS):
 			var color_index = grid_data[row][column]
 			var block = BlockScene.instantiate()
-			block.block_color = COLORS[color_index]
+			block.animal_texture = ANIMAL_TEXTURES[color_index]
 			block.position = Vector2(column * CELL_SIZE, row * CELL_SIZE)
 			block.row = row
 			block.column = column
@@ -136,11 +137,11 @@ func _refill_empty_cells() -> void:
 			if grid_data[row][column] != -1:
 				continue
 
-			var color_index = randi() % COLORS.size()
+			var color_index = randi() % ANIMAL_TEXTURES.size()
 			grid_data[row][column] = color_index
 
 			var block = BlockScene.instantiate()
-			block.block_color = COLORS[color_index]
+			block.animal_texture = ANIMAL_TEXTURES[color_index]
 			block.position = Vector2(column * CELL_SIZE, row * CELL_SIZE)
 			block.row = row
 			block.column = column
