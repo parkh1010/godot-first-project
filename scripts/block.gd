@@ -11,6 +11,10 @@ func _ready() -> void:
 	$ColorRect.color = block_color
 	input_pickable = true
 
+func play_pop_animation() -> void:
+	$AnimationPlayer.play("pop")
+	await $AnimationPlayer.animation_finished
+
 func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
 	var is_mouse_click = event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT
 	var is_touch = event is InputEventScreenTouch and event.pressed
